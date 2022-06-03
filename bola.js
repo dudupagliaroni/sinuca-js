@@ -3,8 +3,9 @@ class Bola {
     this.pos = createVector(x, y);
     this.size = size;
     // this.vel = createVector(1, -1);
-    this.vel = p5.Vector.random2D();
-    this.acc = new p5.Vector(0, 1);
+    this.vel = createVector(random(10), random(10));
+    //this.acc = new p5.Vector(0, 0.1);
+    this.mouse = createVector(mouseX, mouseY);
   }
 
   update() {
@@ -17,6 +18,12 @@ class Bola {
     //noStroke();
     fill(255, 0, 230);
     ellipse(this.pos.x, this.pos.y, this.size);
+  }
+
+  drawLine(){
+    let v = new p5.Vector.sub(this.mouse, this.pos);
+    stroke(0)
+    line(this.pos.x, this.pos.y, v.x, v.y);
   }
 
   bounce() {
